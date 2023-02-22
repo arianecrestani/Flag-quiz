@@ -7,38 +7,43 @@ getCountryApi();
 
 const showFlagData = (data) => {
   const nameFlag = data[0].flags.png; //show Flag
-  // const flagCountryName = data[i].name.common; // show country name
   const imageFlag = document.getElementById("flag");
   imageFlag.setAttribute("src", nameFlag);
   showNameCountry(data);
 };
+
+function pickRandom(data) {
+  let randomArray = data;
+  return randomArray[Math.floor(Math.random() * randomArray.length)];
+}
 
 const showNameCountry = (data) => {
   const optionAnswers = document.getElementById("optionAnswers");
 
   let array = data;
   let newArray = [];
+  console.log(data);
 
-  console.log(array);
-
-  for (let i = 0; 7 > i; i++) {
+  for (let i = 0; 5 >= i; i++) {
     newArray.push(array[i]);
-    console.log(newArray);
+
     const btnAnswer = document.createElement("button");
-    btnAnswer.innerHTML = newArray[i].name.common;
+    let newArrayOfCountryNames = array[i].name.common;
+    btnAnswer.innerHTML = newArrayOfCountryNames;
     optionAnswers.appendChild(btnAnswer);
+
+    btnAnswer.addEventListener("click", function (e) {
+    console.log("e.target.name", e.target.name);
+    console.log("User has clicked on the button!");
+    if (newArrayOfCountryNames === e.target.name) console.log("correct");
+    });
   }
-  return newArray;
+  // return newArray
 
   // return nameCountry
   // const nameCountry =  data[0].name.common;
   // const optionAnswers = document.getElementById("optionAnswers"); // first button
-  // optionAnswers.addEventListener("click", function (e) {
 
-  //   console.log('e.target.name', e.target.name)
-  //   console.log("User has clicked on the button!");
-  //   if(flagCountryName === e.target.name)
-  //  console.log("correct")
-  // });
   // buttons.innerHTML = nameCountry;
+  // return  newArray
 };
