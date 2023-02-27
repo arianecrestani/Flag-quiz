@@ -27,19 +27,34 @@ const showFlagData = (data) => {
 
 const showRandomCountries = (countries, answerCountry) => {
   const country1 = pickRandomCountry(countries); // get one random country
-  showCountryButton(country1, answerCountry);
+  // showCountryButton(country1, answerCountry);
 
   const country2 = pickRandomCountry(countries); // get one random country
-  showCountryButton(country2, answerCountry);
+  // showCountryButton(country2, answerCountry);
 
   const country3 = pickRandomCountry(countries); // get one random country
-  showCountryButton(country3, answerCountry);
+  // showCountryButton(country3, answerCountry);
 
   const country4 = pickRandomCountry(countries); // get one random country
-  showCountryButton(country4, answerCountry);
+  // showCountryButton(country4, answerCountry);
+  // showCountryButton(answerCountry, answerCountry);
 
-  console.log(answerCountry);
-  showCountryButton(answerCountry, answerCountry);
+  const countriesOptions = [
+    country1,
+    country2,
+    country3,
+    country4,
+    answerCountry,
+  ];
+
+  const shuffle = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
+  shuffle(countriesOptions);
+
+  countriesOptions.forEach((answer) => {
+    showCountryButton(answer, answerCountry);
+  });
 };
 
 const pickRandomCountry = (countryList) => {
@@ -53,6 +68,7 @@ const showCountryButton = (country, answerCountry) => {
 
   const optionAnswers = document.getElementById("optionAnswers");
   const btnAnswer = document.createElement("button");
+
   btnAnswer.innerHTML = flagCountryName;
   btnAnswer.setAttribute("name", flagCountryName);
   optionAnswers.appendChild(btnAnswer);
