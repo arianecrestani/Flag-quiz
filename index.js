@@ -8,8 +8,13 @@ const points = document.getElementById("points");
 
 let score = 0;
 
-const sumOfPoints = () => {
+const sum = () => {
   score += 5;
+  points.innerHTML = score;
+};
+
+const subtraction = () => {
+  score -= 5;
   points.innerHTML = score;
 };
 
@@ -18,7 +23,7 @@ const reloadPage = (countries) => {
   showFlagData(answerCountry); // each time reload the page will show one random flag image
   console.log(answerCountry);
   showRandomCountries(countries, answerCountry); // each time a reload page run this function which shows random countries
-  sumOfPoints()
+
   const nextflag = document.getElementById("nextflag"); // a button each time when is clicked cleaning-up the buttons and show new countries
   nextflag.addEventListener("click", function (e) {
     answersDiv.innerHTML = "";
@@ -77,12 +82,16 @@ const showCountryButton = (country, answerCountry) => {
   btnAnswer.addEventListener("click", function (e) {
     console.log("e.target.name", e.target.name);
 
-    if (e.target.name === correctAnswer) {
+    if (
+      e.target.name === correctAnswer ||
+      this.setAttribute("style", "background-color:green")
+    ) {
       btnAnswer.setAttribute("style", "background-color:green");
-      sumOfPoints();
+      sum();
     } else {
       btnAnswer.setAttribute("style", "background-color:red");
       console.log("incorrect");
+      subtraction();
     }
   });
 };
