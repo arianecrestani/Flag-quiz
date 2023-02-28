@@ -4,17 +4,25 @@ const getCountries = async () => {
   return data;
 };
 
-const reloadPage = (countries) => {
-  const answerCountry = pickRandomCountry(countries); // here pick a random object, one country
-  showFlagData(answerCountry);
-  console.log(answerCountry);
-  showRandomCountries(countries, answerCountry);
+const points = document.getElementById("points");
 
-  const nextflag = document.getElementById("nextflag");
+let score = 0;
+
+const sumOfPoints = () => {
+  score += 5;
+  points.innerHTML = score;
+};
+
+const reloadPage = (countries) => {
+  const answerCountry = pickRandomCountry(countries); // here pick a random object, one country and shows one flag for that
+  showFlagData(answerCountry); // each time reload the page will show one random flag image
+  console.log(answerCountry);
+  showRandomCountries(countries, answerCountry); // each time a reload page run this function which shows random countries
+  sumOfPoints()
+  const nextflag = document.getElementById("nextflag"); // a button each time when is clicked cleaning-up the buttons and show new countries
   nextflag.addEventListener("click", function (e) {
     answersDiv.innerHTML = "";
     reloadPage(countries, e.target);
-    console.log(optionAnswers);
   });
 };
 
@@ -22,23 +30,14 @@ const showFlagData = (data) => {
   const nameFlag = data.flags.png; //show Flag
   const imageFlag = document.getElementById("flag");
   imageFlag.setAttribute("src", nameFlag);
-  console.log(nameFlag);
+  console.log(imageFlag);
 };
 
 const showRandomCountries = (countries, answerCountry) => {
   const country1 = pickRandomCountry(countries); // get one random country
-  // showCountryButton(country1, answerCountry);
-
   const country2 = pickRandomCountry(countries); // get one random country
-  // showCountryButton(country2, answerCountry);
-
   const country3 = pickRandomCountry(countries); // get one random country
-  // showCountryButton(country3, answerCountry);
-
   const country4 = pickRandomCountry(countries); // get one random country
-  // showCountryButton(country4, answerCountry);
-  // showCountryButton(answerCountry, answerCountry);
-
   const countriesOptions = [
     country1,
     country2,
@@ -47,7 +46,7 @@ const showRandomCountries = (countries, answerCountry) => {
     answerCountry,
   ];
 
-  const shuffle = (array) => {
+  let shuffle = (array) => {
     return array.sort(() => Math.random() - 0.5);
   };
   shuffle(countriesOptions);
@@ -55,11 +54,13 @@ const showRandomCountries = (countries, answerCountry) => {
   countriesOptions.forEach((answer) => {
     showCountryButton(answer, answerCountry);
   });
+  console.log(countriesOptions);
 };
 
 const pickRandomCountry = (countryList) => {
   //array
-  return countryList[Math.floor(Math.random() * countryList.length)]; //pick random country list
+  return countryList[Math.floor(Math.random() * countryList.length)];
+  //pick random country list
 };
 
 const showCountryButton = (country, answerCountry) => {
@@ -75,11 +76,10 @@ const showCountryButton = (country, answerCountry) => {
 
   btnAnswer.addEventListener("click", function (e) {
     console.log("e.target.name", e.target.name);
-    console.log("flagCountryName", flagCountryName);
 
     if (e.target.name === correctAnswer) {
       btnAnswer.setAttribute("style", "background-color:green");
-      console.log("correct", e.target.name);
+      sumOfPoints();
     } else {
       btnAnswer.setAttribute("style", "background-color:red");
       console.log("incorrect");
