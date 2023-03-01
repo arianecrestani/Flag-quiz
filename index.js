@@ -69,18 +69,28 @@ const showCountryButton = (country, answerCountry) => {
 
   const optionAnswers = document.getElementById("optionAnswers");
   const btnAnswer = document.createElement("button");
+  btnAnswer.classList.add("btn-option");
 
   btnAnswer.innerHTML = flagCountryName;
   btnAnswer.setAttribute("name", flagCountryName);
   optionAnswers.appendChild(btnAnswer);
+
   btnAnswer.addEventListener("click", function (e) {
     if (e.target.name === correctAnswer) {
       btnAnswer.setAttribute("style", "background-color:green");
       sum();
-    }
+    } else {
+      const wrongFlag = document.createElement("div");
+      optionAnswers.appendChild(wrongFlag);
+      wrongFlag.innerHTML = "wrong answer, please press the next button";
+      
+      const optionsButtons = document.getElementsByClassName("btn-option");
+      for (let i = 0; optionsButtons.length > i; i++) {
+        optionsButtons[i].setAttribute("disabled", "true");
+      }
 
-    if (e.target.name !== correctAnswer) {
-      btnAnswer.setAttribute("style", "background-color:red");
+      const exampleButton = document.getElementById("example");
+      exampleButton.setAttribute("style", "display:none");
     }
   });
 };
