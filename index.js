@@ -13,11 +13,6 @@ const sum = () => {
   points.innerHTML = score;
 };
 
-const subtraction = () => {
-  score -= 5;
-  points.innerHTML = score;
-};
-
 const reloadPage = (countries) => {
   const answerCountry = pickRandomCountry(countries); // here pick a random object, one country and shows one flag for that
   showFlagData(answerCountry); // each time reload the page will show one random flag image
@@ -78,20 +73,14 @@ const showCountryButton = (country, answerCountry) => {
   btnAnswer.innerHTML = flagCountryName;
   btnAnswer.setAttribute("name", flagCountryName);
   optionAnswers.appendChild(btnAnswer);
-
   btnAnswer.addEventListener("click", function (e) {
-    console.log("e.target.name", e.target.name);
-
-    if (
-      e.target.name === correctAnswer ||
-      this.setAttribute("style", "background-color:green")
-    ) {
+    if (e.target.name === correctAnswer) {
       btnAnswer.setAttribute("style", "background-color:green");
       sum();
-    } else {
+    }
+
+    if (e.target.name !== correctAnswer) {
       btnAnswer.setAttribute("style", "background-color:red");
-      console.log("incorrect");
-      subtraction();
     }
   });
 };
