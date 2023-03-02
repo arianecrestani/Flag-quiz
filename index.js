@@ -4,6 +4,7 @@ const getCountries = async () => {
   return data;
 };
 
+
 const points = document.getElementById("points");
 
 let score = 0;
@@ -12,6 +13,20 @@ const sum = () => {
   score += 5;
   points.innerHTML = score;
 };
+// const pointsAmount = () => {
+//   if (score >= 4 && score <= 7) {
+//     const winner = document.createElement("h2");
+//     points.appendChild(winner);
+//     winner.textContent = `I winn ${score}`;
+//     console.log(winner);
+//   } else {
+//     const loser = document.createElement("h2");
+//     points.appendChild(loser);
+//     loser.textContent = `Game over ${score}`;
+//     console.log(loser);
+//   }
+//   // player will have 10x times to try the game, if the player get 60% (6 correct answer) of correct answer will be a winner otherwise will loser
+// };
 
 const reloadPage = (countries) => {
   const answerCountry = pickRandomCountry(countries); // here pick a random object, one country and shows one flag for that
@@ -19,8 +34,10 @@ const reloadPage = (countries) => {
   console.log(answerCountry);
   showRandomCountries(countries, answerCountry); // each time a reload page run this function which shows random countries
 
-  const nextflag = document.getElementById("nextflag"); // a button each time when is clicked cleaning-up the buttons and show new countries
-  nextflag.addEventListener("click", function (e) {
+  const nextflagButton = document.getElementById("nextflag"); // a button each time when is clicked cleaning-up the buttons and show new countries
+  
+
+  nextflagButton.addEventListener("click", function (e) {
     answersDiv.innerHTML = "";
     reloadPage(countries, e.target);
   });
@@ -46,13 +63,13 @@ const showRandomCountries = (countries, answerCountry) => {
     answerCountry,
   ];
 
-  let shuffle = (array) => {
-    return array.sort(() => Math.random() - 0.5);
+  let shuffleCountries = (array) => {
+    return array.sort(() => Math.random() - 0.5); // suffle the country answer
   };
-  shuffle(countriesOptions);
+  shuffleCountries(countriesOptions);
 
   countriesOptions.forEach((answer) => {
-    showCountryButton(answer, answerCountry);
+    showCountryButtons(answer, answerCountry);
   });
   console.log(countriesOptions);
 };
@@ -63,34 +80,32 @@ const pickRandomCountry = (countryList) => {
   //pick random country list
 };
 
-const showCountryButton = (country, answerCountry) => {
+const showCountryButtons = (country, answerCountry) => {
   const correctAnswer = answerCountry.name.common; //  update the page with one name of object
   const flagCountryName = country.name.common; //  update the page with one name of object
 
-  const optionAnswers = document.getElementById("optionAnswers");
-  const btnAnswer = document.createElement("button");
-  btnAnswer.classList.add("btn-option");
+  const countryOptions = document.getElementById("optionAnswers");
+  const countryOptionButton = document.createElement("button");
+  countryOptionButton.classList.add("btn-option");
 
-  btnAnswer.innerHTML = flagCountryName;
-  btnAnswer.setAttribute("name", flagCountryName);
-  optionAnswers.appendChild(btnAnswer);
+  countryOptionButton.innerHTML = flagCountryName;
+  countryOptionButton.setAttribute("name", flagCountryName);
+  countryOptions.appendChild(countryOptionButton);
+  
 
-  btnAnswer.addEventListener("click", function (e) {
+  countryOptionButton.addEventListener("click", function (e) {
     if (e.target.name === correctAnswer) {
-      btnAnswer.setAttribute("style", "background-color:green");
+      countryOptionButton.setAttribute("style", "background-color:green");
       sum();
     } else {
       const wrongFlag = document.createElement("div");
-      optionAnswers.appendChild(wrongFlag);
+      countryOptions.appendChild(wrongFlag);
       wrongFlag.innerHTML = "wrong answer, please press the next button";
       
       const optionsButtons = document.getElementsByClassName("btn-option");
       for (let i = 0; optionsButtons.length > i; i++) {
         optionsButtons[i].setAttribute("disabled", "true");
       }
-
-      const exampleButton = document.getElementById("example");
-      exampleButton.setAttribute("style", "display:none");
     }
   });
 };
