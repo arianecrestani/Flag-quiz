@@ -2,26 +2,21 @@
 <html lang="en">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-  />
   <link rel="stylesheet" href="style.css" />
   <title>Flag Quiz</title>
   <header></header>
   <body>
-    <section class="section">
+    <video src="bg-video.mp4" playsinline autoplay muted loop id="video"></video>
+    <section class="first-section">
       <div class="card">
-        <div class="card-image">
-          <figure class="image is-10by3 is-small" id="flag-container">
-            <img class="" id="flag" alt="" />
-          </figure>
-        </div>
+        <figure id="flag-container">
+          <img class="" id="flag" alt="" />
+        </figure>
       </div>
-      <div class="card-content" id="optionAnswers"></div>
+      <div id="countryOptions"></div>
       <button id="nextflag">Next Flag</button>
     </section>
-    <section>
+    <section class="second-section">
       <div id="points"></div>
       <div id="countTime">Round</div>
     </section>

@@ -7,11 +7,11 @@ const getCountries = async () => {
 
 let seconds = 0 
 
-const setTimer = () => {
-  seconds++
-  console.log(seconds)
-}
-let interval = setInterval(setTimer, 1000);
+// const setTimer = () => {
+//   seconds++
+//   console.log(seconds)
+// }
+// let interval = setInterval(setTimer, 1000);
 
 let totalPoints = 0;
 
@@ -22,7 +22,8 @@ const sumOfPoints = () => {
     pointsToAdd = 1
   }
   totalPoints = totalPoints + pointsToAdd
-  pointsElement.innerHTML = `you have ${totalPoints} points`
+  pointsElement.textContent = `you have ${totalPoints} points`
+  console.log(totalPoints)
 };
 
 let chances = 10;
@@ -108,22 +109,22 @@ const showCountryButtons = (country, answerCountry) => {
   const correctAnswer = answerCountry.name.common; //  update the page with one name of object
   const flagCountryName = country.name.common; //  update the page with one name of object
 
-  const countryOptions = document.getElementById("optionAnswers");
+  const countryOptions = document.getElementById("countryOptions");
   const countryOptionButton = document.createElement("button");
   countryOptionButton.classList.add("btn-option");
 
   countryOptionButton.innerHTML = flagCountryName;
   countryOptionButton.setAttribute("name", flagCountryName);
   countryOptions.appendChild(countryOptionButton);
+  countryOptionButton.className = 'button'
 
   countryOptionButton.addEventListener("click", function (e) {
 
     if (e.target.name === correctAnswer) {
       countryOptionButton.setAttribute("style", "background-color:green");
-      countryOptions.setAttribute('disabled', 'true')
+      // countryOptions.setAttribute('disabled', 'true')
       sumOfPoints();
     } else {
-      
       
       const wrongFlag = document.createElement("div");
       countryOptions.appendChild(wrongFlag);

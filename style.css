@@ -1,0 +1,73 @@
+*,
+*::before,
+*::after {
+margin: 0%;
+
+
+}
+body {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  --Very-Dark-Blue-Text: hsl(200, 15%, 8%);
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --White: hsl(0, 0%, 100%);
+  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Noto Sans HK", sans-serif;
+}
+#video{
+  position:absolute;
+  z-index:-1;
+  object-fit: cover;
+  height:100vh;
+  width:100%; 
+
+
+}
+
+.first-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 7px 29px 0px;
+  background: var(--White);
+  color: var(--Very-Dark-Blue-Text);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: 1s ease;
+
+
+
+}
+#flag-container {
+  display: flex;
+  justify-content: center;
+
+}
+
+#flag {
+  height: 40vh;
+
+}
+#countryOptions {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-items: center;
+  margin: 1rem;
+}
+#nextflag {
+  background-color: darkgray;
+}
+.button {
+  border: none;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  margin: 1rem;
+  padding: 1rem;
+  /* border: solid 3px; */
+  max-width: 20rem;
+  min-width: 30rem;
+}
