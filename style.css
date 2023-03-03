@@ -60,10 +60,12 @@ body {
   justify-items: center;
   margin: 3rem;
 }
+
 #nextflag {
   width: 100%;
 }
 .btn-option {
+  color: white;
   border: none;
   background: rgb(2, 0, 36);
   background: linear-gradient(
@@ -76,4 +78,9 @@ body {
   padding: 1rem;
   max-width: 18rem;
   min-width: 26rem;
+}
+.symbol {
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
 }
