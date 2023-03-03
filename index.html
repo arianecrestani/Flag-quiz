@@ -3,25 +3,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fleur%20De%20Leah&display=swap"
+    rel="stylesheet"
+  />
   <title>Flag Quiz</title>
   <header></header>
   <body>
     <div class="container">
-    <video src="bg-video.mp4" playsinline autoplay muted loop id="video"></video>
-    <section class="first-section">
-      <div class="card">
-        <figure id="flag-container">
-          <img class="" id="flag" alt="" />
-        </figure>
-      </div>
-      <div id="countryOptions"></div>
-      <button id="nextflag">Next Flag</button>
-    </section>
-    <section class="second-section">
-      <div id="points"></div>
-      <div id="countTime">Round</div>
-    </section>
-  </div>
+      <video
+        src="bg-video.mp4"
+        playsinline
+        autoplay
+        muted
+        loop
+        id="video"
+      ></video>
+      <section class="first-section">
+        <div class="card">
+          <figure id="flag-container">
+            <img class="" id="flag" alt="" />
+          </figure>
+        </div>
+        <div id="countryOptions"></div>
+        <i id="nextflag" class="fa-sharp fa-solid fa-arrow-right"></i>
+      </section>
+      <section class="second-section">
+        <div id="points"></div>
+        <div id="countTime">Round</div>
+      </section>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>

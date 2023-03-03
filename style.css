@@ -58,12 +58,12 @@ body {
   flex-direction: column;
   align-content: center;
   justify-items: center;
-  margin: 1rem;
+  margin: 3rem;
 }
 #nextflag {
-  background-color: darkgray;
+  width: 100%;
 }
-.button {
+.btn-option {
   border: none;
   background: rgb(2, 0, 36);
   background: linear-gradient(
@@ -72,9 +72,8 @@ body {
     rgba(9, 9, 121, 1) 35%,
     rgba(0, 212, 255, 1) 100%
   );
-  margin: 1rem;
+  margin: 5px;
   padding: 1rem;
-  /* border: solid 3px; */
-  max-width: 20rem;
-  min-width: 30rem;
+  max-width: 18rem;
+  min-width: 26rem;
 }

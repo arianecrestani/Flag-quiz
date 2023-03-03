@@ -7,17 +7,17 @@ const getCountries = async () => {
 
 let seconds = 0 
 
-// const setTimer = () => {
-//   seconds++
-//   console.log(seconds)
-// }
-// let interval = setInterval(setTimer, 1000);
+const setTimer = () => {
+  seconds++
+  console.log(seconds)
+}
+let interval = setInterval(setTimer, 1000);
 
 let totalPoints = 0;
 
 const sumOfPoints = () => {
   const pointsElement = document.getElementById("points");
-  const pointsToAdd = 5 - seconds
+  let pointsToAdd = 5 - seconds
   if(pointsToAdd < 1){
     pointsToAdd = 1
   }
@@ -111,18 +111,19 @@ const showCountryButtons = (country, answerCountry) => {
 
   const countryOptions = document.getElementById("countryOptions");
   const countryOptionButton = document.createElement("button");
+  countryOptionButton.className = 'btn-option'
   countryOptionButton.classList.add("btn-option");
 
   countryOptionButton.innerHTML = flagCountryName;
   countryOptionButton.setAttribute("name", flagCountryName);
   countryOptions.appendChild(countryOptionButton);
-  countryOptionButton.className = 'button'
+
 
   countryOptionButton.addEventListener("click", function (e) {
 
     if (e.target.name === correctAnswer) {
       countryOptionButton.setAttribute("style", "background-color:green");
-      // countryOptions.setAttribute('disabled', 'true')
+      countryOptions.setAttribute('disabled', 'true')
       sumOfPoints();
     } else {
       
@@ -141,7 +142,7 @@ const showCountryButtons = (country, answerCountry) => {
   });
 };
 
-const answersDiv = document.getElementById("optionAnswers");
+const answersDiv = document.getElementById("countryOptions");
 
 getCountries().then((countries) => {
   reloadPage(countries);
