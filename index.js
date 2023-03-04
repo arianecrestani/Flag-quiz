@@ -1,56 +1,50 @@
 const getCountries = async () => {
   const response = await fetch(`https://restcountries.com/v3.1/all`);
-  const data = await response.json(); // array
+  const data = await response.json(); 
   return data;
 };
 
-
-let seconds = 0 
+let seconds = 0;
 
 const setTimer = () => {
-  seconds++
-  console.log(seconds)
-}
+  seconds++;
+  console.log(seconds);
+};
 let interval = setInterval(setTimer, 1000);
 
 let totalPoints = 0;
 
 const sumOfPoints = () => {
   const pointsElement = document.getElementById("points");
-  let pointsToAdd = 5 - seconds
-  if(pointsToAdd < 1){
-    pointsToAdd = 1
+  let pointsToAdd = 5 - seconds;
+  if (pointsToAdd < 1) {
+    pointsToAdd = 1;
   }
-  totalPoints = totalPoints + pointsToAdd
-  pointsElement.textContent = `you have ${totalPoints} points`
-  console.log(totalPoints)
+  totalPoints = totalPoints + pointsToAdd;
+  pointsElement.textContent = `you have ${totalPoints} points`;
+  console.log(totalPoints);
 };
 
-let chances = 10;
+let chances = 5;
 
 const countRound = () => {
   const countTimes = document.getElementById("countTime");
   chances--;
-  countTimes.innerHTML =`you have ${chances} times to play` 
-  
+  countTimes.innerHTML = `you have ${chances} times to play`;
+  if(chances === 0){
+    countTimes.innerHTML =''
+  }
 };
 
 const pointsAmount = () => {
   const points = document.getElementById("points");
-  if (chances === 0) {
-    const messageText = document.createElement("h2");
+  const messageText = document.createElement("h2");
+ 
+  if (chances === 1) {
     points.appendChild(messageText);
-    messageText.textContent = `fineshed the game with ${totalPoints} points`;
-    console.log(messageText);
-   } 
-  //  if(point < 6){
-  //   const loser = document.createElement("h2");
-  //   points.appendChild(loser);
-  //   loser.textContent = `Game over ${point}`;
-  //   console.log(loser);
+    messageText.textContent = `fineshed the game with ${totalPoints} points`; 
+  } 
 
-  //  }
-  // player will have 10x times to try the game, if the player get 60% (6 correct answer) of correct answer will be a winner otherwise will loser
 };
 
 const reloadPage = (countries) => {
@@ -60,7 +54,7 @@ const reloadPage = (countries) => {
   showRandomCountries(countries, answerCountry); // each time a reload page run this function which shows random countries
 
   const nextflagButton = document.getElementById("nextflag"); // a button each time when is clicked cleaning-up the buttons and show new countries
-  seconds = 0
+  seconds = 0;
 
   nextflagButton.addEventListener("click", function (e) {
     answersDiv.innerHTML = "";
@@ -111,22 +105,19 @@ const showCountryButtons = (country, answerCountry) => {
 
   const countryOptions = document.getElementById("countryOptions");
   const countryOptionButton = document.createElement("button");
-  countryOptionButton.className = 'btn-option'
+  countryOptionButton.className = "btn-option";
   countryOptionButton.classList.add("btn-option");
 
   countryOptionButton.innerHTML = flagCountryName;
   countryOptionButton.setAttribute("name", flagCountryName);
   countryOptions.appendChild(countryOptionButton);
 
-
   countryOptionButton.addEventListener("click", function (e) {
-
     if (e.target.name === correctAnswer) {
       countryOptionButton.setAttribute("style", "background-color:green");
-      countryOptions.setAttribute('disabled', 'true')
+      countryOptions.setAttribute("disabled", "true");
       sumOfPoints();
     } else {
-      
       const wrongFlag = document.createElement("div");
       countryOptions.appendChild(wrongFlag);
       wrongFlag.innerHTML = "wrong answer, please press the next button";
@@ -136,9 +127,8 @@ const showCountryButtons = (country, answerCountry) => {
         optionsButtons[i].setAttribute("disabled", "true");
       }
     }
-    pointsAmount()
-    countRound()
- 
+    pointsAmount();
+    countRound();
   });
 };
 
