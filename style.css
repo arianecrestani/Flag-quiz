@@ -53,9 +53,10 @@ body {
   margin-bottom: 1.5rem;
   cursor: pointer;
   transition: 1s ease;
-  min-width: 20rem;
-  margin: 7rem;
+  min-width: 25rem;
+  /* margin: 7rem; */
   max-height: 20rem;
+  min-height: 12rem;
 }
 #flag-container {
   display: flex;
@@ -101,7 +102,8 @@ body {
 }
 .score-table{
   display: flex;
-  flex-flow: wrap;
+  flex-direction: column;
+  margin-top: 3rem;
 }
 #third-section {
   display: flex;
@@ -113,6 +115,7 @@ body {
   cursor: pointer;
   transition: 1s ease;
   min-width: 20rem;
-  margin-left: 7rem;
+  /* margin-left: 7rem; */
   max-height: 10rem;
+  min-height: 10rem;
 }

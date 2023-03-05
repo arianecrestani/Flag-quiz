@@ -38,6 +38,7 @@ const showRecord = () => {
   }
 };
 
+
 let chances = 6;
 
 const countRound = () => {
@@ -47,6 +48,7 @@ const countRound = () => {
   if (chances === -1) {
     countTimes.innerHTML = "";
   }
+
 };
 
 const messageText = document.createElement("h2");
@@ -56,6 +58,7 @@ const pointsAmount = () => {
   if (chances === 0) {
     points.appendChild(messageText);
     messageText.textContent = `Fineshed the game with ${totalPoints} points`;
+    showRecord();
 
     const optionsButtons = document.getElementsByClassName("btn-option");
     for (let i = 0; optionsButtons.length > i; i++) {
@@ -63,9 +66,8 @@ const pointsAmount = () => {
     }
     const imageFlag = document.getElementById("flag");
     imageFlag.setAttribute("src", "./world.png");
-
-    showRecord();
   }
+
 };
 
 const reloadPage = (countries) => {
