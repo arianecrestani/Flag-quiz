@@ -4,12 +4,10 @@
   margin: 0%;
 }
 body {
-
   --Very-Dark-Blue-Text: hsl(200, 15%, 8%);
   --Very-Light-Gray: hsl(0, 0%, 98%);
   --White: hsl(0, 0%, 100%);
   font-family: "Nunito Sans", sans-serif;
-
 }
 .container {
   display: flex;
@@ -26,7 +24,7 @@ body {
 .card {
   display: flex;
   align-self: center;
-  /* max-width: fit-content; */
+
 }
 
 .first-section {
@@ -58,11 +56,9 @@ body {
   min-width: 20rem;
   margin: 7rem;
   max-height: 20rem;
-
 }
 #flag-container {
   display: flex;
-
   justify-content: center;
 }
 
@@ -75,23 +71,13 @@ body {
   align-content: center;
   justify-items: center;
   margin: 1rem;
-
 }
 
 #nextflag {
   width: 100%;
 }
 .btn-option {
-
   border: none;
-  /* background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  ); */
-
   margin: 5px;
   padding: 1rem;
   max-width: 18rem;
@@ -103,9 +89,13 @@ body {
   text-align: center;
   font-size: 3rem;
 }
-#points{
+#points {
   text-align: center;
-  color: brown;
+  color: blue;
   padding: 2rem;
+  cursor: pointer;
+  transition: 2s ease;
+}
+#restart-btn{
 
 }
