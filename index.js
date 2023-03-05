@@ -31,10 +31,11 @@ const showRecord = () => {
   const thirdSection = document.getElementById("third-section");
   const recordValue = document.createElement("h2");
   thirdSection.appendChild(recordValue);
-
+  recordValue.innerHTML = ''
   if (totalPoints > record) {
     record = totalPoints;
     recordValue.textContent = `Score table record ${record}`;
+
   }
 };
 
