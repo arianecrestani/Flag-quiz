@@ -25,6 +25,19 @@ const sumOfPoints = () => {
   console.log(totalPoints);
 };
 
+let record = 0;
+
+const showRecord = () => {
+  const thirdSection = document.getElementById("third-section");
+  const recordValue = document.createElement("h2");
+  thirdSection.appendChild(recordValue);
+
+  if (totalPoints > record) {
+    record = totalPoints;
+    recordValue.textContent = `Score table record ${record}`;
+  }
+};
+
 let chances = 6;
 
 const countRound = () => {
@@ -37,17 +50,21 @@ const countRound = () => {
 };
 
 const messageText = document.createElement("h2");
+
 const pointsAmount = () => {
   const points = document.getElementById("points");
   if (chances === 0) {
     points.appendChild(messageText);
     messageText.textContent = `Fineshed the game with ${totalPoints} points`;
+
     const optionsButtons = document.getElementsByClassName("btn-option");
     for (let i = 0; optionsButtons.length > i; i++) {
       optionsButtons[i].setAttribute("hidden", "true");
     }
     const imageFlag = document.getElementById("flag");
     imageFlag.setAttribute("src", "./world.png");
+
+    showRecord();
   }
 };
 
@@ -58,13 +75,14 @@ const reloadPage = (countries) => {
   showRandomCountries(countries, answerCountry); // each time a reload page run this function which shows random countries
   countRound();
   pointsAmount();
+
   seconds = 0;
   const countryOptions = document.getElementById("countryOptions");
 
   if (chances === 0) {
     const restartButton = document.createElement("button");
     restartButton.textContent = "Restart The Game";
-    restartButton.id = 'restart-btn'
+    restartButton.id = "restart-btn";
     countryOptions.appendChild(restartButton);
     countryOptions.setAttribute("disabled", "true");
     seconds = 0;

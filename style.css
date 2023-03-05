@@ -99,3 +99,20 @@ body {
 #restart-btn{
 
 }
+.score-table{
+  display: flex;
+  flex-flow: wrap;
+}
+#third-section {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background: var(--White);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: 1s ease;
+  min-width: 20rem;
+  margin-left: 7rem;
+  max-height: 10rem;
+}
