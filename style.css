@@ -65,7 +65,7 @@ body {
 
 #flag {
   height: 40vh;
-  max-width: 30rem;
+  max-width: 40rem;
 }
 #countryOptions {
   display: flex;

@@ -1,16 +1,25 @@
 const getCountries = async () => {
   const response = await fetch(`https://restcountries.com/v3.1/all`);
-  const data = await response.json();
+  const data = await response.json().catch((error) => alert("error", error));
   return data;
 };
 
 let seconds = 0;
+let interval;
 
 const setTimer = () => {
   seconds++;
   console.log(seconds);
 };
-let interval = setInterval(setTimer, 1000);
+
+const startSecond = () => {
+  interval = setInterval(setTimer, 1000);
+};
+startSecond();
+
+const stopSecond = () => {
+  clearInterval(interval);
+};
 
 let totalPoints = 0;
 
@@ -30,15 +39,14 @@ let record = 0;
 const showRecord = () => {
   const thirdSection = document.getElementById("third-section");
   const recordValue = document.createElement("h2");
-  thirdSection.appendChild(recordValue);
-  recordValue.innerHTML = ''
+
   if (totalPoints > record) {
+    thirdSection.appendChild(recordValue);
     record = totalPoints;
     recordValue.textContent = `Score table record ${record}`;
+  } 
 
-  }
 };
-
 
 let chances = 6;
 
@@ -49,26 +57,26 @@ const countRound = () => {
   if (chances === -1) {
     countTimes.innerHTML = "";
   }
-
 };
 
 const messageText = document.createElement("h2");
 
 const pointsAmount = () => {
   const points = document.getElementById("points");
+
   if (chances === 0) {
+    showRecord();
     points.appendChild(messageText);
     messageText.textContent = `Fineshed the game with ${totalPoints} points`;
-    showRecord();
 
     const optionsButtons = document.getElementsByClassName("btn-option");
     for (let i = 0; optionsButtons.length > i; i++) {
       optionsButtons[i].setAttribute("hidden", "true");
     }
+
     const imageFlag = document.getElementById("flag");
     imageFlag.setAttribute("src", "./world.png");
   }
-
 };
 
 const reloadPage = (countries) => {
@@ -80,7 +88,9 @@ const reloadPage = (countries) => {
   pointsAmount();
 
   seconds = 0;
+
   const countryOptions = document.getElementById("countryOptions");
+  const recordValue = document.createElement("h2");
 
   if (chances === 0) {
     const restartButton = document.createElement("button");
@@ -88,10 +98,14 @@ const reloadPage = (countries) => {
     restartButton.id = "restart-btn";
     countryOptions.appendChild(restartButton);
     countryOptions.setAttribute("disabled", "true");
+
+    stopSecond();
     seconds = 0;
+
     restartButton.addEventListener("click", function (e) {
+      startSecond();
+      totalPoints = 0
       chances = 6;
-      totalPoints = 0;
       answersDiv.innerHTML = "";
       pointsElement.innerHTML = "";
       reloadPage(countries, e.target);
@@ -101,12 +115,14 @@ const reloadPage = (countries) => {
     nextflagButton.innerHTML = "&#8594;";
     nextflagButton.className = "symbol";
     countryOptions.appendChild(nextflagButton);
-    seconds = 0;
+
     nextflagButton.addEventListener("click", function (e) {
+      console.log(seconds);
       answersDiv.innerHTML = "";
       reloadPage(countries, e.target);
     });
   }
+  recordValue.innerHTML = "";
 };
 
 const showFlagData = (data) => {
@@ -134,8 +150,8 @@ const showRandomCountries = (countries, answerCountry) => {
   };
   shuffleCountries(countriesOptions);
 
-  countriesOptions.forEach((answer) => {
-    showCountryButtons(answer, answerCountry);
+  countriesOptions.forEach((answerOptions) => {
+    showCountryButtons(answerOptions, answerCountry);
   });
   console.log(countriesOptions);
 };
@@ -162,7 +178,7 @@ const showCountryButtons = (country, answerCountry) => {
   countryOptionButton.addEventListener("click", function (e) {
     if (e.target.name === correctAnswer) {
       countryOptionButton.setAttribute("style", "background-color:green");
-      countryOptions.setAttribute("disabled", "true");
+      // countryOptions.setAttribute("disabled", "true");
       sumOfPoints();
     } else {
       const wrongFlag = document.createElement("div");
