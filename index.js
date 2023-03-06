@@ -41,11 +41,11 @@ const showRecord = () => {
   const recordValue = document.createElement("h2");
 
   if (totalPoints > record) {
+    thirdSection.innerHTML = "";
     thirdSection.appendChild(recordValue);
     record = totalPoints;
     recordValue.textContent = `Score table record ${record}`;
-  } 
-
+  }
 };
 
 let chances = 6;
@@ -104,7 +104,7 @@ const reloadPage = (countries) => {
 
     restartButton.addEventListener("click", function (e) {
       startSecond();
-      totalPoints = 0
+      totalPoints = 0;
       chances = 6;
       answersDiv.innerHTML = "";
       pointsElement.innerHTML = "";
