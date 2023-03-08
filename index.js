@@ -30,20 +30,22 @@ const sumOfPoints = () => {
     pointsToAdd = 1;
   }
   totalPoints = totalPoints + pointsToAdd;
-  pointsElement.textContent = `you have ${totalPoints} points`;
+  pointsElement.textContent = `You have now ${totalPoints} points`;
   console.log(totalPoints);
 };
 
 let record = 0;
 
-const showRecord = () => {
-  const thirdSection = document.getElementById("third-section");
-  const highestRecord = document.createElement("h2");
-
+const newRecord = () => {
   if (totalPoints > record) {
     record = totalPoints;
     localStorage.setItem("recordValue", record);
   }
+};
+
+const showRecord = () => {
+  const thirdSection = document.getElementById("third-section");
+  const highestRecord = document.createElement("h2");
 
   const storageRecord = localStorage.getItem("recordValue");
   highestRecord.textContent = `The highest record ${storageRecord}`;
@@ -51,7 +53,6 @@ const showRecord = () => {
   thirdSection.appendChild(highestRecord);
   console.log(storageRecord);
 };
-
 
 let chances = 6;
 
@@ -70,7 +71,7 @@ const pointsAmount = () => {
   const points = document.getElementById("points");
 
   if (chances === 0) {
-    showRecord();
+    newRecord();
 
     points.appendChild(messageText);
     messageText.textContent = `Fineshed the game with ${totalPoints} points`;
@@ -84,11 +85,7 @@ const pointsAmount = () => {
     imageFlag.setAttribute("src", "./world.png");
   }
 };
-
 const reloadPage = (countries) => {
-  const thirdSection = document.getElementById("third-section");
-  const highestRecord = document.createElement("h2");
-
   const answerCountry = pickRandomCountry(countries); // here pick a random object, one country and shows one flag for that
   showFlagData(answerCountry); // each time reload the page will show one random flag image
   console.log(answerCountry);
@@ -96,15 +93,12 @@ const reloadPage = (countries) => {
 
   countRound();
   pointsAmount();
-
-  const storageRecord = localStorage.getItem("recordValue");
-  highestRecord.textContent = `The highest record ${storageRecord}`;
-  thirdSection.innerHTML = "";
-  thirdSection.appendChild(highestRecord);
-  console.log(storageRecord);
-
+  showRecord();
   seconds = 0;
+  nextGame(countries);
+};
 
+const nextGame = (countries) => {
   const countryOptions = document.getElementById("countryOptions");
 
   if (chances === 0) {
@@ -165,38 +159,35 @@ const showRandomCountries = (countries, answerCountry) => {
   shuffleCountries(countriesOptions);
 
   countriesOptions.forEach((answerOptions) => {
-    showCountryButtons(answerOptions, answerCountry);
+    showCountryOptionsButton(answerOptions, answerCountry);
   });
   console.log(countriesOptions);
 };
 
 const pickRandomCountry = (countryList) => {
-  //array
   return countryList[Math.floor(Math.random() * countryList.length)];
-  //pick random country list
 };
 
-const showCountryButtons = (country, answerCountry) => {
+const showCountryOptionsButton = (country, answerCountry) => {
   const correctAnswer = answerCountry.name.common; //  update the page with one name of object
   const flagCountryName = country.name.common; //  update the page with one name of object
 
-  const countryOptions = document.getElementById("countryOptions");
+  const countriesOption = document.getElementById("countryOptions");
   const countryOptionButton = document.createElement("button");
   countryOptionButton.className = "btn-option";
   countryOptionButton.classList.add("btn-option");
 
   countryOptionButton.innerHTML = flagCountryName;
   countryOptionButton.setAttribute("name", flagCountryName);
-  countryOptions.appendChild(countryOptionButton);
+  countriesOption.appendChild(countryOptionButton);
 
   countryOptionButton.addEventListener("click", function (e) {
     if (e.target.name === correctAnswer) {
       countryOptionButton.setAttribute("style", "background-color:green");
-      // countryOptions.setAttribute("disabled", "true");
       sumOfPoints();
     } else {
       const wrongFlag = document.createElement("div");
-      countryOptions.appendChild(wrongFlag);
+      countriesOption.appendChild(wrongFlag);
       wrongFlag.innerHTML = "wrong answer, please press the next button";
 
       const optionsButtons = document.getElementsByClassName("btn-option");
