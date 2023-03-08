@@ -52,6 +52,7 @@ const showRecord = () => {
   console.log(storageRecord);
 };
 
+
 let chances = 6;
 
 const countRound = () => {
@@ -85,6 +86,9 @@ const pointsAmount = () => {
 };
 
 const reloadPage = (countries) => {
+  const thirdSection = document.getElementById("third-section");
+  const highestRecord = document.createElement("h2");
+
   const answerCountry = pickRandomCountry(countries); // here pick a random object, one country and shows one flag for that
   showFlagData(answerCountry); // each time reload the page will show one random flag image
   console.log(answerCountry);
@@ -92,6 +96,12 @@ const reloadPage = (countries) => {
 
   countRound();
   pointsAmount();
+
+  const storageRecord = localStorage.getItem("recordValue");
+  highestRecord.textContent = `The highest record ${storageRecord}`;
+  thirdSection.innerHTML = "";
+  thirdSection.appendChild(highestRecord);
+  console.log(storageRecord);
 
   seconds = 0;
 
@@ -127,7 +137,6 @@ const reloadPage = (countries) => {
       reloadPage(countries, e.target);
     });
   }
-  showRecord();
 };
 
 const showFlagData = (data) => {

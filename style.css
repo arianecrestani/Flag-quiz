@@ -102,6 +102,10 @@ body {
   transition: 2s ease;
 }
 #restart-btn {
+  background-color: black;
+  margin: 2rem;
+  padding: 1rem;
+  color: white;
 }
 .score-table {
   display: flex;
@@ -128,6 +132,7 @@ body {
   margin: 4rem;
   font-size: xx-large;
   font-family: 'League Spartan', sans-serif;
+  color: red;
 
 }
 #countTime {
@@ -137,6 +142,7 @@ body {
   margin: 2rem;
   font-size: xx-large;
   font-family: 'League Spartan', sans-serif;
+
 
 }
 @media (max-width: 1140px) {
