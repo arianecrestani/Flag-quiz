@@ -86,9 +86,9 @@ body {
   min-width: 26rem;
   font-size: 15px;
 }
-.btn-option:hover{
-  background-color: #20b2aa
-} 
+.btn-option:hover {
+  background-color: #20b2aa;
+}
 .symbol {
   width: 100%;
   text-align: center;
@@ -108,7 +108,6 @@ body {
   flex-direction: column;
   margin-top: 3rem;
   text-align: center;
-
 }
 #third-section {
   display: flex;
@@ -122,6 +121,23 @@ body {
   min-width: 20rem;
   max-height: 10rem;
   min-height: 10rem;
+}
+#third-section h2 {
+  display: flex;
+  justify-content: center;
+  margin: 4rem;
+  font-size: xx-large;
+  font-family: 'League Spartan', sans-serif;
+
+}
+#countTime {
+
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+  font-size: xx-large;
+  font-family: 'League Spartan', sans-serif;
+
 }
 @media (max-width: 1140px) {
   .score-table {

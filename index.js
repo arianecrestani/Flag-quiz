@@ -38,14 +38,18 @@ let record = 0;
 
 const showRecord = () => {
   const thirdSection = document.getElementById("third-section");
-  const recordValue = document.createElement("h2");
+  const highestRecord = document.createElement("h2");
 
   if (totalPoints > record) {
-    thirdSection.innerHTML = "";
-    thirdSection.appendChild(recordValue);
     record = totalPoints;
-    recordValue.textContent = `Score table record ${record}`;
+    localStorage.setItem("recordValue", record);
   }
+
+  const storageRecord = localStorage.getItem("recordValue");
+  highestRecord.textContent = `The highest record ${storageRecord}`;
+  thirdSection.innerHTML = "";
+  thirdSection.appendChild(highestRecord);
+  console.log(storageRecord);
 };
 
 let chances = 6;
@@ -66,6 +70,7 @@ const pointsAmount = () => {
 
   if (chances === 0) {
     showRecord();
+
     points.appendChild(messageText);
     messageText.textContent = `Fineshed the game with ${totalPoints} points`;
 
@@ -84,13 +89,13 @@ const reloadPage = (countries) => {
   showFlagData(answerCountry); // each time reload the page will show one random flag image
   console.log(answerCountry);
   showRandomCountries(countries, answerCountry); // each time a reload page run this function which shows random countries
+
   countRound();
   pointsAmount();
 
   seconds = 0;
 
   const countryOptions = document.getElementById("countryOptions");
-  const recordValue = document.createElement("h2");
 
   if (chances === 0) {
     const restartButton = document.createElement("button");
@@ -111,7 +116,7 @@ const reloadPage = (countries) => {
       reloadPage(countries, e.target);
     });
   } else {
-    const nextflagButton = document.createElement("div"); // a button each time when is clicked cleaning-up the buttons and show new countries
+    const nextflagButton = document.createElement("div"); // a button each time when is clicked
     nextflagButton.innerHTML = "&#8594;";
     nextflagButton.className = "symbol";
     countryOptions.appendChild(nextflagButton);
@@ -122,7 +127,7 @@ const reloadPage = (countries) => {
       reloadPage(countries, e.target);
     });
   }
-  recordValue.innerHTML = "";
+  showRecord();
 };
 
 const showFlagData = (data) => {
