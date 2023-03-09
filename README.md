@@ -1,4 +1,4 @@
-## Flag-quiz
+## Flag Quiz
 
 This is a final project from Botcamp Code Academy Berlin.
 
