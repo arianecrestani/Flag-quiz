@@ -94,7 +94,7 @@ const reloadPage = (countries) => {
   pointsAmount();
   showRecord();
   seconds = 0;
-  nextGame(countries);
+  playGameAgain(countries);
 };
 
 const endGame = (countries) => {
@@ -131,7 +131,7 @@ const continuePlaying = (countries) => {
   });
 };
 
-const nextGame = (countries) => {
+const playGameAgain = (countries) => {
 
   if (chances === 0) {
     endGame(countries);

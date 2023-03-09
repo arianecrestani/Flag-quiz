@@ -84,7 +84,7 @@ body {
   padding: 1rem;
   max-width: 18rem;
   min-width: 26rem;
-  font-size: 15px;
+  font-size: 17px;
 }
 .btn-option:hover {
   background-color: #5b6dcd;
@@ -102,10 +102,12 @@ body {
   transition: 2s ease;
 }
 #restart-btn {
+  border: solid #5b6dcd 5px;
   background-color: black;
   margin: 2rem;
   padding: 1rem;
   color: white;
+  font-size: large;
 }
 .score-table {
   display: flex;
