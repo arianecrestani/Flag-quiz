@@ -7,7 +7,7 @@ This is a final project from Botcamp Code Academy Berlin.
 Users should be able to:
 
 - Playing a quiz with the thema Countries.
-- There are 5 countries options whichy one answer is correct.
+- There are 5 countries options which one answer is correct.
 - Target the Flag with match of the correct answer, correct country.
 - it is able to see the points.
 - the points are getting for correct answer and as faster as you can! 
