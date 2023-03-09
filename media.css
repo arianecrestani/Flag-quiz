@@ -39,6 +39,7 @@
     display: none;
   }
   #flag {
+    max-width: 27rem;
     height: 28vh;
   }
   .second-section {
@@ -52,5 +53,8 @@
   }
   .btn-option {
     min-width: 18rem;
+    align-items: center;
+    align-self: center;
+
   }
 }
