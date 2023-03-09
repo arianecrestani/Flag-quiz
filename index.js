@@ -9,7 +9,6 @@ let interval;
 
 const setTimer = () => {
   seconds++;
-  console.log(seconds);
 };
 
 const startSecond = () => {
@@ -89,7 +88,6 @@ const reloadPage = (countries) => {
   seconds = 0;
   const answerCountry = pickRandomCountry(countries); 
   showFlagData(answerCountry);
-  console.log(answerCountry);
   showRandomCountries(countries, answerCountry); 
   countRound();
   pointsAmount();
