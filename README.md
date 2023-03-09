@@ -2,6 +2,14 @@
 
 This is a final project from Botcamp Code Academy Berlin.
 
+
+### Built with
+- Api (Rest Country Api)
+- Vanilla Javascript
+- flexbox
+- media queria for different sizes
+- Local storage to save the highest record
+
 ### The challenge
 
 Users should be able to:
@@ -15,16 +23,10 @@ Users should be able to:
 - 1 second or less 1 point.
 - See the highest record even if the page was reloaded
 
-### Built with
-- Api (Rest Country Api)
-- Vanilla Javascript
-- flexbox
-- media queria for different sizes
-- Local storage
 
 ### link here
 
-https://flag-quiz-game.netlify.app/
+https://flag-country-api.netlify.app/
 
 ### Screenshot
 
