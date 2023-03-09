@@ -47,19 +47,16 @@ const showRecord = () => {
   const highestRecord = document.createElement("h2");
   const storageRecord = localStorage.getItem("recordValue");
 
-  if(storageRecord !== null){
+  if (storageRecord !== null) {
     highestRecord.textContent = `The highest record ${storageRecord}`;
     thirdSection.innerHTML = "";
     thirdSection.appendChild(highestRecord);
     console.log(storageRecord);
-
-  }else {
+  } else {
     highestRecord.textContent = `There is no record yet`;
     thirdSection.innerHTML = "";
     thirdSection.appendChild(highestRecord);
   }
-
-
 };
 
 let chances = 6;
@@ -95,9 +92,9 @@ const pointsAmount = () => {
 };
 const reloadPage = (countries) => {
   seconds = 0;
-  const answerCountry = pickRandomCountry(countries); 
+  const answerCountry = pickRandomCountry(countries);
   showFlagData(answerCountry);
-  showRandomCountries(countries, answerCountry); 
+  showRandomCountries(countries, answerCountry);
   countRound();
   pointsAmount();
   showRecord();
@@ -139,10 +136,8 @@ const continuePlaying = (countries) => {
 };
 
 const playGameAgain = (countries) => {
-
   if (chances === 0) {
     endGame(countries);
-
   } else {
     continuePlaying(countries);
   }
@@ -158,8 +153,8 @@ const showFlagData = (data) => {
 const showRandomCountries = (countries, answerCountry) => {
   const country1 = pickRandomCountry(countries); // get one random country
   const country2 = pickRandomCountry(countries);
-  const country3 = pickRandomCountry(countries); 
-  const country4 = pickRandomCountry(countries); 
+  const country3 = pickRandomCountry(countries);
+  const country4 = pickRandomCountry(countries);
   const countriesOptions = [
     country1,
     country2,
@@ -184,7 +179,7 @@ const pickRandomCountry = (countryList) => {
 };
 
 const showCountryOptionsButton = (country, answerCountry) => {
-  const correctAnswer = answerCountry.name.common; 
+  const correctAnswer = answerCountry.name.common;
   const flagCountryNameOptions = country.name.common;
 
   const countriesOption = document.getElementById("countryOptions");
@@ -203,7 +198,7 @@ const showCountryOptionsButton = (country, answerCountry) => {
     } else {
       const wrongFlag = document.createElement("div");
       countriesOption.appendChild(wrongFlag);
-      wrongFlag.id ='wrong-answer'
+      wrongFlag.id = "wrong-answer";
       wrongFlag.innerHTML = "Wrong answer, please press the next button";
 
       const optionsButtons = document.getElementsByClassName("btn-option");
