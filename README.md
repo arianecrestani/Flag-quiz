@@ -24,7 +24,7 @@ Users should be able to:
 
 ### link here
 
-flag-quiz-game.netlify.app
+https://flag-quiz-game.netlify.app/
 
 ### Screenshot
 
