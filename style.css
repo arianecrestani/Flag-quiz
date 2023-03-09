@@ -1,6 +1,4 @@
-*,
-*::before,
-*::after {
+* {
   margin: 0%;
 }
 body {
@@ -16,11 +14,12 @@ body {
 }
 
 #video {
-  position: absolute;
+  position: fixed;
   z-index: -1;
   object-fit: cover;
-  height: 100vh;
+  height: 108vh;
   width: 100%;
+  min-height: 100vh;
 }
 .card {
   display: flex;
