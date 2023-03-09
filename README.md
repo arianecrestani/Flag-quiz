@@ -13,12 +13,14 @@ Users should be able to:
 - the points are getting for correct answer and as faster as you can! 
 - 5 seconds earn 5 points. 
 - 1 second or less 1 point.
+- See the highest record even the page was reloaded
 
 ### Built with
 - Api (Rest Country Api)
 - Vanilla Javascript
 - flexbox
 - media queria for different sizes
+- Local storage
 
 ### Screenshot
 
