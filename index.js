@@ -86,6 +86,7 @@ const pointsAmount = () => {
   }
 };
 const reloadPage = (countries) => {
+  seconds = 0;
   const answerCountry = pickRandomCountry(countries); 
   showFlagData(answerCountry);
   console.log(answerCountry);
@@ -93,7 +94,6 @@ const reloadPage = (countries) => {
   countRound();
   pointsAmount();
   showRecord();
-  seconds = 0;
   playGameAgain(countries);
 };
 
@@ -142,7 +142,7 @@ const playGameAgain = (countries) => {
 };
 
 const showFlagData = (data) => {
-  const nameFlag = data.flags.png; //show Flag
+  const nameFlag = data.flags.png;
   const imageFlag = document.getElementById("flag");
   imageFlag.setAttribute("src", nameFlag);
   console.log(imageFlag);
@@ -150,9 +150,9 @@ const showFlagData = (data) => {
 
 const showRandomCountries = (countries, answerCountry) => {
   const country1 = pickRandomCountry(countries); // get one random country
-  const country2 = pickRandomCountry(countries); // get one random country
-  const country3 = pickRandomCountry(countries); // get one random country
-  const country4 = pickRandomCountry(countries); // get one random country
+  const country2 = pickRandomCountry(countries);
+  const country3 = pickRandomCountry(countries); 
+  const country4 = pickRandomCountry(countries); 
   const countriesOptions = [
     country1,
     country2,
@@ -177,8 +177,8 @@ const pickRandomCountry = (countryList) => {
 };
 
 const showCountryOptionsButton = (country, answerCountry) => {
-  const correctAnswer = answerCountry.name.common; //  update the page with one name of object
-  const flagCountryNameOptions = country.name.common; //  update the page with one name of object
+  const correctAnswer = answerCountry.name.common; 
+  const flagCountryNameOptions = country.name.common;
 
   const countriesOption = document.getElementById("countryOptions");
   const countryOptionButton = document.createElement("button");
