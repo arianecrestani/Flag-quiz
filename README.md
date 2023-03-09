@@ -10,7 +10,7 @@ This is a final project from Botcamp Code Academy Berlin.
 - media queria for different sizes
 - Local storage to save the highest record
 
-### The challenge
+### About the quiz
 
 Users should be able to:
 
