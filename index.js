@@ -36,7 +36,7 @@ const sumOfPoints = () => {
 
 let record = 0;
 
-const newRecord = () => {
+const checkRecord = () => {
   if (totalPoints > record) {
     record = totalPoints;
     localStorage.setItem("recordValue", record);
@@ -71,7 +71,7 @@ const pointsAmount = () => {
   const points = document.getElementById("points");
 
   if (chances === 0) {
-    newRecord();
+    checkRecord();
 
     points.appendChild(messageText);
     messageText.textContent = `Fineshed the game with ${totalPoints} points`;
@@ -86,11 +86,10 @@ const pointsAmount = () => {
   }
 };
 const reloadPage = (countries) => {
-  const answerCountry = pickRandomCountry(countries); // here pick a random object, one country and shows one flag for that
-  showFlagData(answerCountry); // each time reload the page will show one random flag image
+  const answerCountry = pickRandomCountry(countries); 
+  showFlagData(answerCountry);
   console.log(answerCountry);
-  showRandomCountries(countries, answerCountry); // each time a reload page run this function which shows random countries
-
+  showRandomCountries(countries, answerCountry); 
   countRound();
   pointsAmount();
   showRecord();
@@ -98,38 +97,47 @@ const reloadPage = (countries) => {
   nextGame(countries);
 };
 
-const nextGame = (countries) => {
+const endGame = (countries) => {
   const countryOptions = document.getElementById("countryOptions");
+  const restartButton = document.createElement("button");
+  restartButton.textContent = "Restart The Game";
+  restartButton.id = "restart-btn";
+  countryOptions.appendChild(restartButton);
+  countryOptions.setAttribute("disabled", "true");
+
+  stopSecond();
+  seconds = 0;
+
+  restartButton.addEventListener("click", function (e) {
+    startSecond();
+    totalPoints = 0;
+    chances = 6;
+    answersDiv.innerHTML = "";
+    pointsElement.innerHTML = "";
+    reloadPage(countries, e.target);
+  });
+};
+const continuePlaying = (countries) => {
+  const countryOptions = document.getElementById("countryOptions");
+  const nextflagButton = document.createElement("div");
+  nextflagButton.innerHTML = "&#8594;";
+  nextflagButton.className = "symbol";
+  countryOptions.appendChild(nextflagButton);
+
+  nextflagButton.addEventListener("click", function (e) {
+    console.log(seconds);
+    answersDiv.innerHTML = "";
+    reloadPage(countries, e.target);
+  });
+};
+
+const nextGame = (countries) => {
 
   if (chances === 0) {
-    const restartButton = document.createElement("button");
-    restartButton.textContent = "Restart The Game";
-    restartButton.id = "restart-btn";
-    countryOptions.appendChild(restartButton);
-    countryOptions.setAttribute("disabled", "true");
+    endGame(countries);
 
-    stopSecond();
-    seconds = 0;
-
-    restartButton.addEventListener("click", function (e) {
-      startSecond();
-      totalPoints = 0;
-      chances = 6;
-      answersDiv.innerHTML = "";
-      pointsElement.innerHTML = "";
-      reloadPage(countries, e.target);
-    });
   } else {
-    const nextflagButton = document.createElement("div"); // a button each time when is clicked
-    nextflagButton.innerHTML = "&#8594;";
-    nextflagButton.className = "symbol";
-    countryOptions.appendChild(nextflagButton);
-
-    nextflagButton.addEventListener("click", function (e) {
-      console.log(seconds);
-      answersDiv.innerHTML = "";
-      reloadPage(countries, e.target);
-    });
+    continuePlaying(countries);
   }
 };
 
@@ -170,15 +178,15 @@ const pickRandomCountry = (countryList) => {
 
 const showCountryOptionsButton = (country, answerCountry) => {
   const correctAnswer = answerCountry.name.common; //  update the page with one name of object
-  const flagCountryName = country.name.common; //  update the page with one name of object
+  const flagCountryNameOptions = country.name.common; //  update the page with one name of object
 
   const countriesOption = document.getElementById("countryOptions");
   const countryOptionButton = document.createElement("button");
   countryOptionButton.className = "btn-option";
   countryOptionButton.classList.add("btn-option");
 
-  countryOptionButton.innerHTML = flagCountryName;
-  countryOptionButton.setAttribute("name", flagCountryName);
+  countryOptionButton.innerHTML = flagCountryNameOptions;
+  countryOptionButton.setAttribute("name", flagCountryNameOptions);
   countriesOption.appendChild(countryOptionButton);
 
   countryOptionButton.addEventListener("click", function (e) {
@@ -188,7 +196,8 @@ const showCountryOptionsButton = (country, answerCountry) => {
     } else {
       const wrongFlag = document.createElement("div");
       countriesOption.appendChild(wrongFlag);
-      wrongFlag.innerHTML = "wrong answer, please press the next button";
+      wrongFlag.id ='wrong-answer'
+      wrongFlag.innerHTML = "Wrong answer, please press the next button";
 
       const optionsButtons = document.getElementsByClassName("btn-option");
       for (let i = 0; optionsButtons.length > i; i++) {

@@ -54,9 +54,9 @@ body {
   cursor: pointer;
   transition: 1s ease;
   min-width: 25rem;
-  /* margin: 7rem; */
   max-height: 20rem;
   min-height: 12rem;
+  border: solid #5b6dcd 10px;
 }
 #flag-container {
   display: flex;
@@ -87,7 +87,7 @@ body {
   font-size: 15px;
 }
 .btn-option:hover {
-  background-color: #20b2aa;
+  background-color: #5b6dcd;
 }
 .symbol {
   width: 100%;
@@ -113,6 +113,11 @@ body {
   margin-top: 3rem;
   text-align: center;
 }
+#wrong-answer{
+  color: red;
+  font-size: 20px;
+  padding: 7px;
+}
 #third-section {
   display: flex;
   flex-direction: column;
@@ -125,56 +130,22 @@ body {
   min-width: 20rem;
   max-height: 10rem;
   min-height: 10rem;
+  border: solid #5b6dcd 10px;
 }
 #third-section h2 {
   display: flex;
   justify-content: center;
   margin: 4rem;
   font-size: xx-large;
-  font-family: 'League Spartan', sans-serif;
+  font-family: "League Spartan", sans-serif;
   color: red;
-
 }
-#countTime {
 
+#countTime {
   display: flex;
   justify-content: center;
   margin: 2rem;
   font-size: xx-large;
-  font-family: 'League Spartan', sans-serif;
+  font-family: "League Spartan", sans-serif;
+}
 
-
-}
-@media (max-width: 1140px) {
-  .score-table {
-    margin-top: 0;
-  }
-  #third-section {
-    min-height: 5rem;
-  }
-  .first-section {
-    flex-direction: row;
-  }
-  #flag {
-    max-width: 28rem;
-  }
-  .btn-option {
-    min-width: 20rem;
-  }
-}
-@media (max-width: 600px) {
-  .first-section {
-    flex-direction: column;
-    margin: 0;
-  }
-  #video {
-    display: none;
-  }
-  #flag {
-    height: 25vh;
-  }
-  .second-section {
-    min-height: 15rem;
-    width: 20rem;
-  }
-}
