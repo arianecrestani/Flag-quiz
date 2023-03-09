@@ -45,12 +45,21 @@ const checkRecord = () => {
 const showRecord = () => {
   const thirdSection = document.getElementById("third-section");
   const highestRecord = document.createElement("h2");
-
   const storageRecord = localStorage.getItem("recordValue");
-  highestRecord.textContent = `The highest record ${storageRecord}`;
-  thirdSection.innerHTML = "";
-  thirdSection.appendChild(highestRecord);
-  console.log(storageRecord);
+
+  if(storageRecord !== null){
+    highestRecord.textContent = `The highest record ${storageRecord}`;
+    thirdSection.innerHTML = "";
+    thirdSection.appendChild(highestRecord);
+    console.log(storageRecord);
+
+  }else {
+    highestRecord.textContent = `There is no record yet`;
+    thirdSection.innerHTML = "";
+    thirdSection.appendChild(highestRecord);
+  }
+
+
 };
 
 let chances = 6;
