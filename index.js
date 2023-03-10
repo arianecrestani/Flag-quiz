@@ -90,7 +90,7 @@ const pointsAmount = () => {
     imageFlag.setAttribute("src", "./world.png");
   }
 };
-const reloadPage = (countries) => {
+const updateUi = (countries) => {
   seconds = 0;
   const answerCountry = pickRandomCountry(countries);
   showFlagData(answerCountry);
@@ -98,7 +98,7 @@ const reloadPage = (countries) => {
   countRound();
   pointsAmount();
   showRecord();
-  playGameAgain(countries);
+  quizStatus(countries);
 };
 
 const endGame = (countries) => {
@@ -118,7 +118,7 @@ const endGame = (countries) => {
     chances = 6;
     answersDiv.innerHTML = "";
     pointsElement.innerHTML = "";
-    reloadPage(countries, e.target);
+    updateUi(countries, e.target);
   });
 };
 const continuePlaying = (countries) => {
@@ -131,11 +131,11 @@ const continuePlaying = (countries) => {
   nextflagButton.addEventListener("click", function (e) {
     console.log(seconds);
     answersDiv.innerHTML = "";
-    reloadPage(countries, e.target);
+    updateUi(countries, e.target);
   });
 };
 
-const playGameAgain = (countries) => {
+const quizStatus = (countries) => {
   if (chances === 0) {
     endGame(countries);
   } else {
@@ -212,5 +212,5 @@ const showCountryOptionsButton = (country, answerCountry) => {
 const answersDiv = document.getElementById("countryOptions");
 
 getCountries().then((countries) => {
-  reloadPage(countries);
+  updateUi(countries);
 });
