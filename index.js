@@ -9,6 +9,7 @@ let interval;
 
 const setTimer = () => {
   seconds++;
+  console.log(seconds)
 };
 
 const startSecond = () => {
@@ -23,11 +24,14 @@ const stopSecond = () => {
 let totalPoints = 0;
 
 const pointsElement = document.getElementById("points");
+
 const sumOfPoints = () => {
   let pointsToAdd = 5 - seconds;
   if (pointsToAdd < 1) {
     pointsToAdd = 1;
   }
+
+  const pointsElement = document.getElementById("points");
   totalPoints = totalPoints + pointsToAdd;
   pointsElement.textContent = `You have now ${totalPoints} points`;
   console.log(totalPoints);
@@ -99,6 +103,11 @@ const updateUi = (countries) => {
   pointsAmount();
   showRecord();
   quizStatus(countries);
+  if (totalPoints === 0) {
+    const pointsElement = document.getElementById("points");
+    totalPoints = 0;
+    pointsElement.textContent = `You have now ${totalPoints} points`;
+  }
 };
 
 const endGame = (countries) => {
@@ -164,14 +173,13 @@ const showRandomCountries = (countries, answerCountry) => {
   ];
 
   let shuffleCountries = (array) => {
-    return array.sort(() => Math.random() - 0.5); // suffle the country answer
+    return array.sort(() => Math.random() - 0.5);
   };
   shuffleCountries(countriesOptions);
 
   countriesOptions.forEach((answerOptions) => {
     showCountryOptionsButton(answerOptions, answerCountry);
   });
-  console.log(countriesOptions);
 };
 
 const pickRandomCountry = (countryList) => {
@@ -181,6 +189,7 @@ const pickRandomCountry = (countryList) => {
 const showCountryOptionsButton = (country, answerCountry) => {
   const correctAnswer = answerCountry.name.common;
   const flagCountryNameOptions = country.name.common;
+  console.log(flagCountryNameOptions);
 
   const countriesOption = document.getElementById("countryOptions");
   const countryOptionButton = document.createElement("button");
