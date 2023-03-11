@@ -9,7 +9,6 @@ let interval;
 
 const setTimer = () => {
   seconds++;
-  console.log(seconds)
 };
 
 const startSecond = () => {
@@ -74,9 +73,8 @@ const countRound = () => {
   }
 };
 
-const messageText = document.createElement("h2");
-
 const pointsAmount = () => {
+  const messageText = document.createElement("h2");
   const points = document.getElementById("points");
 
   if (chances === 0) {
@@ -156,11 +154,10 @@ const showFlagData = (data) => {
   const nameFlag = data.flags.png;
   const imageFlag = document.getElementById("flag");
   imageFlag.setAttribute("src", nameFlag);
-  console.log(imageFlag);
 };
 
 const showRandomCountries = (countries, answerCountry) => {
-  const country1 = pickRandomCountry(countries); // get one random country
+  const country1 = pickRandomCountry(countries);
   const country2 = pickRandomCountry(countries);
   const country3 = pickRandomCountry(countries);
   const country4 = pickRandomCountry(countries);
@@ -172,8 +169,8 @@ const showRandomCountries = (countries, answerCountry) => {
     answerCountry,
   ];
 
-  let shuffleCountries = (array) => {
-    return array.sort(() => Math.random() - 0.5);
+  let shuffleCountries = (arrayCountries) => {
+    return arrayCountries.sort(() => Math.random() - 0.5);
   };
   shuffleCountries(countriesOptions);
 
