@@ -94,9 +94,10 @@ const pointsAmount = () => {
 };
 const updateUi = (countries) => {
   seconds = 0;
-  const answerCountry = pickRandomCountry(countries);
-  showFlagData(answerCountry);
-  showRandomCountries(countries, answerCountry);
+  const answerCountryName = pickRandomCountry(countries);// get a one random object country flag and name that will be the answer 
+  console.log(answerCountryName)
+  showFlagData(answerCountryName);
+  showRandomCountries(countries, answerCountryName);
   countRound();
   pointsAmount();
   showRecord();
@@ -152,11 +153,13 @@ const quizStatus = (countries) => {
 
 const showFlagData = (data) => {
   const nameFlag = data.flags.png;
+  console.log(nameFlag)
   const imageFlag = document.getElementById("flag");
+  console.log(imageFlag)
   imageFlag.setAttribute("src", nameFlag);
 };
 
-const showRandomCountries = (countries, answerCountry) => {
+const showRandomCountries = (countries, answerCountryName) => {
   const country1 = pickRandomCountry(countries);
   const country2 = pickRandomCountry(countries);
   const country3 = pickRandomCountry(countries);
@@ -166,7 +169,7 @@ const showRandomCountries = (countries, answerCountry) => {
     country2,
     country3,
     country4,
-    answerCountry,
+    answerCountryName,
   ];
 
   let shuffleCountries = (arrayCountries) => {
@@ -175,18 +178,20 @@ const showRandomCountries = (countries, answerCountry) => {
   shuffleCountries(countriesOptions);
 
   countriesOptions.forEach((answerOptions) => {
-    showCountryOptionsButton(answerOptions, answerCountry);
+    showCountryOptionsButton(answerOptions, answerCountryName);
   });
 };
 
 const pickRandomCountry = (countryList) => {
+
+
   return countryList[Math.floor(Math.random() * countryList.length)];
+
 };
 
-const showCountryOptionsButton = (country, answerCountry) => {
-  const correctAnswer = answerCountry.name.common;
+const showCountryOptionsButton = (country, answerCountryName) => {
+  const correctAnswer = answerCountryName.name.common; 
   const flagCountryNameOptions = country.name.common;
-  console.log(flagCountryNameOptions);
 
   const countriesOption = document.getElementById("countryOptions");
   const countryOptionButton = document.createElement("button");
