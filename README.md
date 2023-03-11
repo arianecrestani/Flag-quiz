@@ -19,7 +19,7 @@ Users should be able to:
 - Target the Flag with a match of the correct answer, correct country.
 - see the points for each time
 - the points are getting for the correct answer and as faster as you can! 
-- if is clicked in 1 second 5 points.
+- if is clicked in 1 second earn 5 points.
 - if is clicked in 2 seconds earn 4 points
 - if is clicked in 3 seconds earn 3 points
 - if is clicked in 4 seconds earn 2 points
