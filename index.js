@@ -68,7 +68,7 @@ let chances = 6;
 const countRound = () => {
   const countTimes = document.getElementById("countTime");
   chances--;
-  countTimes.innerHTML = `you have ${chances} times to play`;
+  countTimes.innerHTML = `You have ${chances} times to play`;
   if (chances === -1) {
     countTimes.innerHTML = "";
   }
