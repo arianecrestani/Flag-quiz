@@ -54,7 +54,6 @@ const showRecord = () => {
     highestRecord.textContent = `The highest record ${storageRecord}`;
     thirdSection.innerHTML = "";
     thirdSection.appendChild(highestRecord);
-    console.log(storageRecord);
   } else {
     highestRecord.textContent = `There is no record yet`;
     thirdSection.innerHTML = "";
@@ -94,10 +93,17 @@ const pointsAmount = () => {
 };
 const updateUi = (countries) => {
   seconds = 0;
-  const answerCountryName = pickRandomCountry(countries);// get a one random object country flag and name that will be the answer 
-  console.log(answerCountryName)
-  showFlagData(answerCountryName);
-  showRandomCountries(countries, answerCountryName);
+  // const answerCountryName = pickRandomCountry(countries); // get a one random object country flag and name that will be the answer
+  // console.log(answerCountryName)
+  const answerRegionName = pickRandomCountry(countries);
+
+  // console.log(answerRegionName)
+  // showFlagData(answerCountryName);
+  showFlagData(answerRegionName);
+
+  // showRandomCountries(countries, answerCountryName);
+  showRandomRegions(answerRegionName, countries);
+  // showRegionOptionsButton(countries, answerRegionName);
   countRound();
   pointsAmount();
   showRecord();
@@ -130,7 +136,7 @@ const endGame = (countries) => {
   });
 };
 const continuePlaying = (countries) => {
-  const countryOptions = document.getElementById("countryOptions");
+  const countryOptions = document.getElementById("buttonOptions");
   const nextflagButton = document.createElement("div");
   nextflagButton.innerHTML = "&#8594;";
   nextflagButton.className = "symbol";
@@ -153,22 +159,83 @@ const quizStatus = (countries) => {
 
 const showFlagData = (data) => {
   const nameFlag = data.flags.png;
-  console.log(nameFlag)
   const imageFlag = document.getElementById("flag");
-  console.log(imageFlag)
   imageFlag.setAttribute("src", nameFlag);
 };
+const showRandomRegions = (answerRegionName) => {
+  const correctAnswerRegion = answerRegionName.region;
+  const regionsOption = document.getElementById("buttonOptions");
+
+  const region1 = document.createElement("button");
+  region1.textContent = "Asia";
+  region1.className = "btn-option";
+  region1.setAttribute("name", "Asia");
+  console.log(region1);
+  regionsOption.appendChild(region1);
+
+  const region2 = document.createElement("button");
+  region2.textContent = "Americas";
+  region2.className = "btn-option";
+  region2.setAttribute("name", "Americas");
+  regionsOption.appendChild(region2);
+
+  const region3 = document.createElement("button");
+  region3.textContent = "Oceania";
+  region3.className = "btn-option";
+  region3.setAttribute("name", "Oceania");
+  regionsOption.appendChild(region3);
+
+  const region4 = document.createElement("button");
+  region4.textContent = "Africa";
+  region4.className = "btn-option";
+  region4.setAttribute("name", "Africa");
+  regionsOption.appendChild(region4);
+
+  const region5 = document.createElement("button");
+  region5.textContent = "Europe";
+  region5.className = "btn-option";
+  region5.setAttribute("name", "Europe");
+  regionsOption.appendChild(region5);
+
+  const regions = [region1, region2, region3, region4, region5];
+
+  regions.forEach((region) => {
+    region.addEventListener("click", function (e) {
+      if (e.target.name === correctAnswerRegion) {
+        region.setAttribute("style", "background-color:green");
+        sumOfPoints();
+      } else {
+        const wrongFlag = document.createElement("div");
+        regionsOption.appendChild(wrongFlag);
+        wrongFlag.id = "wrong-answer";
+        wrongFlag.innerHTML = "Wrong answer, please press the next button";
+
+        const optionsButtons = document.getElementsByClassName("btn-option");
+        for (let i = 0; optionsButtons.length > i; i++) {
+          optionsButtons[i].setAttribute("disabled", "true");
+        }
+      }
+    });
+  });
+};
+
+// regionsOption.forEach((region) => {
+//   region.classList.add("btn-option");
+//   region.className = "btn-option";
+// });
 
 const showRandomCountries = (countries, answerCountryName) => {
   const country1 = pickRandomCountry(countries);
   const country2 = pickRandomCountry(countries);
   const country3 = pickRandomCountry(countries);
   const country4 = pickRandomCountry(countries);
+  const country5 = pickRandomCountry(countries);
   const countriesOptions = [
     country1,
     country2,
     country3,
     country4,
+    country5,
     answerCountryName,
   ];
 
@@ -183,17 +250,47 @@ const showRandomCountries = (countries, answerCountryName) => {
 };
 
 const pickRandomCountry = (countryList) => {
-
-
   return countryList[Math.floor(Math.random() * countryList.length)];
+};
 
+const showRegionOptionsButton = (regions, answerRegionName) => {
+  const correctAnswerRegion = answerRegionName.region;
+  const regionNameOptions = regions.region;
+  console.log(regionNameOptions);
+
+  const regionsOption = document.getElementById("buttonOptions");
+  const regionOptionButton = document.createElement("button");
+  regionOptionButton.className = "btn-option";
+  regionOptionButton.classList.add("btn-option");
+
+  regionOptionButton.innerHTML = regionNameOptions;
+  regionOptionButton.setAttribute("name", regionNameOptions);
+  regionsOption.appendChild(regionOptionButton);
+  console.log(regionOptionButton);
+
+  regionOptionButton.addEventListener("click", function (e) {
+    if (e.target.name === correctAnswerRegion) {
+      regionOptionButton.setAttribute("style", "background-color:green");
+      sumOfPoints();
+    } else {
+      const wrongFlag = document.createElement("div");
+      regionsOption.appendChild(wrongFlag);
+      wrongFlag.id = "wrong-answer";
+      wrongFlag.innerHTML = "Wrong answer, please press the next button";
+
+      const optionsButtons = document.getElementsByClassName("btn-option");
+      for (let i = 0; optionsButtons.length > i; i++) {
+        optionsButtons[i].setAttribute("disabled", "true");
+      }
+    }
+  });
 };
 
 const showCountryOptionsButton = (country, answerCountryName) => {
-  const correctAnswer = answerCountryName.name.common; 
+  const correctAnswerCountry = answerCountryName.name.common;
   const flagCountryNameOptions = country.name.common;
 
-  const countriesOption = document.getElementById("countryOptions");
+  const countriesOption = document.getElementById("buttonOptions");
   const countryOptionButton = document.createElement("button");
   countryOptionButton.className = "btn-option";
   countryOptionButton.classList.add("btn-option");
@@ -203,7 +300,7 @@ const showCountryOptionsButton = (country, answerCountryName) => {
   countriesOption.appendChild(countryOptionButton);
 
   countryOptionButton.addEventListener("click", function (e) {
-    if (e.target.name === correctAnswer) {
+    if (e.target.name === correctAnswerCountry) {
       countryOptionButton.setAttribute("style", "background-color:green");
       sumOfPoints();
     } else {
