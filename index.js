@@ -102,7 +102,7 @@ const updateUi = (countries) => {
   console.log("date", date); //random
   if (date % 2 === 0) {
     showFlagData(answerRegionName);
-    showRandomRegions(answerRegionName, countries);
+    showRegions(answerRegionName, countries);
   } else {
     showRandomCountries(countries, answerCountryName);
     showFlagData(answerCountryName);
@@ -147,7 +147,6 @@ const continuePlaying = (countries) => {
 
   nextflagButton.addEventListener("click", function (e) {
     console.log(seconds);
-    // answersDiv.innerHTML = "";
     updateUi(countries, e.target);
   });
 };
@@ -165,45 +164,30 @@ const showFlagData = (data) => {
   const imageFlag = document.getElementById("flag");
   imageFlag.setAttribute("src", nameFlag);
 };
-const showRandomRegions = (answerRegionName) => {
-  const correctAnswerRegion = answerRegionName.region;
 
+const createButton = (title) => {
+  const button = document.createElement("button");
+  button.innerHTML = title;
+  button.className = "btn-option";
+  button.setAttribute("name", title);
+
+  return button;
+};
+
+const showRegions = (answerRegionName) => {
+  const correctAnswerRegion = answerRegionName.region;
   const regionsOption = document.getElementById("buttonOptions");
 
-  const region1 = document.createElement("button");
-  region1.innerHTML = "Asia";
-  region1.className = "btn-option";
-  region1.setAttribute("name", "Asia");
-  console.log(region1);
-  regionsOption.appendChild(region1);
-
-  const region2 = document.createElement("button");
-  region2.innerHTML = "Americas";
-  region2.className = "btn-option";
-  region2.setAttribute("name", "Americas");
-  regionsOption.appendChild(region2);
-
-  const region3 = document.createElement("button");
-  region3.innerHTML = "Oceania";
-  region3.className = "btn-option";
-  region3.setAttribute("name", "Oceania");
-  regionsOption.appendChild(region3);
-
-  const region4 = document.createElement("button");
-  region4.innerHTML = "Africa";
-  region4.className = "btn-option";
-  region4.setAttribute("name", "Africa");
-  regionsOption.appendChild(region4);
-
-  const region5 = document.createElement("button");
-  region5.textContent = "Europe";
-  region5.className = "btn-option";
-  region5.setAttribute("name", "Europe");
-  regionsOption.appendChild(region5);
+  const region1 = createButton("Asia");
+  const region2 = createButton("Americas");
+  const region3 = createButton("Oceania");
+  const region4 = createButton("Africa");
+  const region5 = createButton("Europe");
 
   const regions = [region1, region2, region3, region4, region5];
 
   regions.forEach((optionButton) => {
+    regionsOption.appendChild(optionButton);
     eventButtons(optionButton, correctAnswerRegion);
   });
 };
@@ -267,8 +251,7 @@ const showCountryOptionsButton = (country, answerCountryName) => {
   optionButton.setAttribute("name", flagCountryNameOptions);
   countriesOption.appendChild(optionButton);
 
-  eventButtons(optionButton, correctAnswerCountry)
-
+  eventButtons(optionButton, correctAnswerCountry);
 };
 
 getCountries().then((countries) => {
