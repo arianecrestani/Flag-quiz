@@ -92,18 +92,20 @@ const pointsAmount = () => {
   }
 };
 const updateUi = (countries) => {
+  const answersDiv = document.getElementById("buttonOptions");
+  answersDiv.innerHTML = "";
   seconds = 0;
-  // const answerCountryName = pickRandomCountry(countries); // get a one random object country flag and name that will be the answer
-  // console.log(answerCountryName)
   const answerRegionName = pickRandomCountry(countries);
-
-  // console.log(answerRegionName)
-  // showFlagData(answerCountryName);
-  showFlagData(answerRegionName);
-
-  // showRandomCountries(countries, answerCountryName);
-  showRandomRegions(answerRegionName, countries);
-  // showRegionOptionsButton(countries, answerRegionName);
+  const answerCountryName = pickRandomCountry(countries);
+  const date = new Date().getMilliseconds();
+  console.log("date", date);
+  if (date % 2 === 0) {
+    showFlagData(answerRegionName);
+    showRandomRegions(answerRegionName, countries);
+  } else {
+    showRandomCountries(countries, answerCountryName);
+    showFlagData(answerCountryName);
+  }
   countRound();
   pointsAmount();
   showRecord();
@@ -116,7 +118,7 @@ const updateUi = (countries) => {
 };
 
 const endGame = (countries) => {
-  const countryOptions = document.getElementById("countryOptions");
+  const countryOptions = document.getElementById("buttonOptions");
   const restartButton = document.createElement("button");
   restartButton.textContent = "Restart The Game";
   restartButton.id = "restart-btn";
@@ -130,13 +132,13 @@ const endGame = (countries) => {
     startSecond();
     totalPoints = 0;
     chances = 6;
-    answersDiv.innerHTML = "";
     pointsElement.innerHTML = "";
     updateUi(countries, e.target);
   });
 };
 const continuePlaying = (countries) => {
   const countryOptions = document.getElementById("buttonOptions");
+
   const nextflagButton = document.createElement("div");
   nextflagButton.innerHTML = "&#8594;";
   nextflagButton.className = "symbol";
@@ -144,7 +146,7 @@ const continuePlaying = (countries) => {
 
   nextflagButton.addEventListener("click", function (e) {
     console.log(seconds);
-    answersDiv.innerHTML = "";
+    // answersDiv.innerHTML = "";
     updateUi(countries, e.target);
   });
 };
@@ -164,29 +166,30 @@ const showFlagData = (data) => {
 };
 const showRandomRegions = (answerRegionName) => {
   const correctAnswerRegion = answerRegionName.region;
+
   const regionsOption = document.getElementById("buttonOptions");
 
   const region1 = document.createElement("button");
-  region1.textContent = "Asia";
+  region1.innerHTML = "Asia";
   region1.className = "btn-option";
   region1.setAttribute("name", "Asia");
   console.log(region1);
   regionsOption.appendChild(region1);
 
   const region2 = document.createElement("button");
-  region2.textContent = "Americas";
+  region2.innerHTML = "Americas";
   region2.className = "btn-option";
   region2.setAttribute("name", "Americas");
   regionsOption.appendChild(region2);
 
   const region3 = document.createElement("button");
-  region3.textContent = "Oceania";
+  region3.innerHTML = "Oceania";
   region3.className = "btn-option";
   region3.setAttribute("name", "Oceania");
   regionsOption.appendChild(region3);
 
   const region4 = document.createElement("button");
-  region4.textContent = "Africa";
+  region4.innerHTML = "Africa";
   region4.className = "btn-option";
   region4.setAttribute("name", "Africa");
   regionsOption.appendChild(region4);
@@ -219,23 +222,16 @@ const showRandomRegions = (answerRegionName) => {
   });
 };
 
-// regionsOption.forEach((region) => {
-//   region.classList.add("btn-option");
-//   region.className = "btn-option";
-// });
-
 const showRandomCountries = (countries, answerCountryName) => {
   const country1 = pickRandomCountry(countries);
   const country2 = pickRandomCountry(countries);
   const country3 = pickRandomCountry(countries);
   const country4 = pickRandomCountry(countries);
-  const country5 = pickRandomCountry(countries);
   const countriesOptions = [
     country1,
     country2,
     country3,
     country4,
-    country5,
     answerCountryName,
   ];
 
@@ -253,44 +249,11 @@ const pickRandomCountry = (countryList) => {
   return countryList[Math.floor(Math.random() * countryList.length)];
 };
 
-const showRegionOptionsButton = (regions, answerRegionName) => {
-  const correctAnswerRegion = answerRegionName.region;
-  const regionNameOptions = regions.region;
-  console.log(regionNameOptions);
-
-  const regionsOption = document.getElementById("buttonOptions");
-  const regionOptionButton = document.createElement("button");
-  regionOptionButton.className = "btn-option";
-  regionOptionButton.classList.add("btn-option");
-
-  regionOptionButton.innerHTML = regionNameOptions;
-  regionOptionButton.setAttribute("name", regionNameOptions);
-  regionsOption.appendChild(regionOptionButton);
-  console.log(regionOptionButton);
-
-  regionOptionButton.addEventListener("click", function (e) {
-    if (e.target.name === correctAnswerRegion) {
-      regionOptionButton.setAttribute("style", "background-color:green");
-      sumOfPoints();
-    } else {
-      const wrongFlag = document.createElement("div");
-      regionsOption.appendChild(wrongFlag);
-      wrongFlag.id = "wrong-answer";
-      wrongFlag.innerHTML = "Wrong answer, please press the next button";
-
-      const optionsButtons = document.getElementsByClassName("btn-option");
-      for (let i = 0; optionsButtons.length > i; i++) {
-        optionsButtons[i].setAttribute("disabled", "true");
-      }
-    }
-  });
-};
-
 const showCountryOptionsButton = (country, answerCountryName) => {
   const correctAnswerCountry = answerCountryName.name.common;
   const flagCountryNameOptions = country.name.common;
-
   const countriesOption = document.getElementById("buttonOptions");
+
   const countryOptionButton = document.createElement("button");
   countryOptionButton.className = "btn-option";
   countryOptionButton.classList.add("btn-option");
@@ -316,8 +279,6 @@ const showCountryOptionsButton = (country, answerCountryName) => {
     }
   });
 };
-
-const answersDiv = document.getElementById("countryOptions");
 
 getCountries().then((countries) => {
   updateUi(countries);
