@@ -97,8 +97,9 @@ const updateUi = (countries) => {
   seconds = 0;
   const answerRegionName = pickRandomCountry(countries);
   const answerCountryName = pickRandomCountry(countries);
+
   const date = new Date().getMilliseconds();
-  console.log("date", date);
+  console.log("date", date); //random
   if (date % 2 === 0) {
     showFlagData(answerRegionName);
     showRandomRegions(answerRegionName, countries);
@@ -202,23 +203,27 @@ const showRandomRegions = (answerRegionName) => {
 
   const regions = [region1, region2, region3, region4, region5];
 
-  regions.forEach((region) => {
-    region.addEventListener("click", function (e) {
-      if (e.target.name === correctAnswerRegion) {
-        region.setAttribute("style", "background-color:green");
-        sumOfPoints();
-      } else {
-        const wrongFlag = document.createElement("div");
-        regionsOption.appendChild(wrongFlag);
-        wrongFlag.id = "wrong-answer";
-        wrongFlag.innerHTML = "Wrong answer, please press the next button";
+  regions.forEach((optionButton) => {
+    eventButtons(optionButton, correctAnswerRegion);
+  });
+};
+const eventButtons = (optionButton, correctAnswerRegion) => {
+  const regionsOption = document.getElementById("buttonOptions");
+  optionButton.addEventListener("click", function (e) {
+    if (e.target.name === correctAnswerRegion) {
+      optionButton.setAttribute("style", "background-color:green");
+      sumOfPoints();
+    } else {
+      const wrongFlag = document.createElement("div");
+      regionsOption.appendChild(wrongFlag);
+      wrongFlag.id = "wrong-answer";
+      wrongFlag.innerHTML = "Wrong answer, please press the next button";
 
-        const optionsButtons = document.getElementsByClassName("btn-option");
-        for (let i = 0; optionsButtons.length > i; i++) {
-          optionsButtons[i].setAttribute("disabled", "true");
-        }
+      const optionsButtons = document.getElementsByClassName("btn-option");
+      for (let i = 0; optionsButtons.length > i; i++) {
+        optionsButtons[i].setAttribute("disabled", "true");
       }
-    });
+    }
   });
 };
 
@@ -254,30 +259,16 @@ const showCountryOptionsButton = (country, answerCountryName) => {
   const flagCountryNameOptions = country.name.common;
   const countriesOption = document.getElementById("buttonOptions");
 
-  const countryOptionButton = document.createElement("button");
-  countryOptionButton.className = "btn-option";
-  countryOptionButton.classList.add("btn-option");
+  const optionButton = document.createElement("button");
+  optionButton.className = "btn-option";
+  optionButton.classList.add("btn-option");
 
-  countryOptionButton.innerHTML = flagCountryNameOptions;
-  countryOptionButton.setAttribute("name", flagCountryNameOptions);
-  countriesOption.appendChild(countryOptionButton);
+  optionButton.innerHTML = flagCountryNameOptions;
+  optionButton.setAttribute("name", flagCountryNameOptions);
+  countriesOption.appendChild(optionButton);
 
-  countryOptionButton.addEventListener("click", function (e) {
-    if (e.target.name === correctAnswerCountry) {
-      countryOptionButton.setAttribute("style", "background-color:green");
-      sumOfPoints();
-    } else {
-      const wrongFlag = document.createElement("div");
-      countriesOption.appendChild(wrongFlag);
-      wrongFlag.id = "wrong-answer";
-      wrongFlag.innerHTML = "Wrong answer, please press the next button";
+  eventButtons(optionButton, correctAnswerCountry)
 
-      const optionsButtons = document.getElementsByClassName("btn-option");
-      for (let i = 0; optionsButtons.length > i; i++) {
-        optionsButtons[i].setAttribute("disabled", "true");
-      }
-    }
-  });
 };
 
 getCountries().then((countries) => {
