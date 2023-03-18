@@ -19,11 +19,11 @@ Users should be able to:
 - Target the Flag with a match of the correct answer, correct country.
 - See the points for each time
 - The points are getting for the correct answer and as faster as you can! 
-- if is clicked in 1 second earn 5 points.
-- if is clicked in 2 seconds earn 4 points
-- if is clicked in 3 seconds earn 3 points
-- if is clicked in 4 seconds earn 2 points
-- if is clicked in 5 seconds earn 1 point. 
+- if is hit the target in 1 second earn 5 points.
+- if is hit the target in 2 seconds earn 4 points
+- if is hit the target in 3 seconds earn 3 points
+- if is hit the target in 4 seconds earn 2 points
+- if is hit the target in 5 seconds earn 1 point. 
 - if is more then 5 seconds earn 1 point
 
 - See the highest record even if the page was reloaded
