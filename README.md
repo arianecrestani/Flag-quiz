@@ -16,7 +16,7 @@ Users should be able to:
 
 - Playing a quiz with the theme Countries.
 - There are 5 countries' options for which one answer is correct.
-- Target the Flag with a match of the correct answer, correct country.
+- Target the Flag with a match of the correct answer, correct country or region.
 - See the points for each time
 - The points are getting for the correct answer and as faster as you can! 
 - if is hit the target in 1 second earn 5 points.
