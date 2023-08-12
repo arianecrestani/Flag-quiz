@@ -1,6 +1,6 @@
 ## Flag Quiz
 
-This is one of final project from Botcamp Code Academy Berlin.
+This is one of the final projects from Bootcamp Code Academy Berlin.
 
 
 ### Built with
@@ -20,17 +20,17 @@ Users should be able to:
 - See the points for each time
 - The points are getting for the correct answer and as faster as you can! 
 
-- if is hit the target in 1 second earn 5 points.
+- if it hit the target in 1 second earn 5 points.
 
-- if is hit the target in 2 seconds earn 4 points
+- if it hit the target in 2 seconds earn 4 points
 
-- if is hit the target in 3 seconds earn 3 points
+- if it hit the target in 3 seconds earn 3 points
 
-- if is hit the target in 4 seconds earn 2 points
+- if it hit the target in 4 seconds earn 2 points
 
-- if is hit the target in 5 seconds earn 1 point. 
+- if it hit the target in 5 seconds earn 1 point. 
 
-- if is more then 5 seconds earn 1 point
+- if is more than 5 seconds earn 1 point
 
 - See the highest record even if the page was reloaded
 
